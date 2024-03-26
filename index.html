@@ -15,13 +15,14 @@
     </div>
     <div class="content">
         <div class="search-input">
-            <label for="search">Enter Location: </label>
-            <input type="text" id="search" maxlength="50">
+            <input type="text" id="search" maxlength="50" placeholder="Enter location here...">
             <button class="main-seach">Search</button>
+            <div id="formats">
+                <button id="farenheit">F</button>
+                <button id="celsius">C</button>
+            </div>
         </div>
         <div class="forecast">
-            <div id="c-to-f">
-            </div>
             <div id="forecast-header">
                 <h3 id="location-name"></h3>
                 <h4 id="location-country"></h4>

@@ -18,3 +18,13 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+.search-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+input, button {
+    font-family: inherit;
+}
