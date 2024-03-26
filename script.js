@@ -15,6 +15,7 @@ https://api.weatherapi.com/v1/forecast.json?key=keyHere&q=locationHere
 const WEATHER_API_KEY = "9740515f7e2f4924acb162332242503"
 const searchField = document.getElementById("search")
 const searchBtn = document.querySelector(".main-search")
+const weatherDisplay = document.getElementById("weather-display")
 
 const getSearch = async (e) => {
     e.preventDefault()
@@ -30,12 +31,38 @@ const getSearch = async (e) => {
             document.getElementById("error-display").textContent = "MONTHLY CALL FREQUENCY EXCEEDED"
         }
         else {
-            console.log(data)
-            // handle data -- render ui here
+            transformData(data)
         }
         
     })
 
+}
+
+const transformData = (data) => {
+    // location data
+    const name = data.location.name
+    const region = data.location.region
+    const country = data.location.country
+
+    // forecast data
+    const conditionText = data.forecast.forecastday[0]["day"].condition.text
+    const conditionIcon = data.forecast.forecastday[0]["day"].condition.icon
+    const code = data.forecast.forecastday[0]["day"].condition.code
+    const lowTemp = Math.round(data.forecast.forecastday[0]["day"].mintemp_f)
+    const highTemp = Math.round(data.forecast.forecastday[0]["day"].maxtemp_f)
+
+    const essentialData = {
+        location: [name, region, country],
+        forecast: [conditionText ,conditionIcon, code,
+        lowTemp, highTemp]
+    }
+
+    return renderUi(essentialData)
+
+}
+
+const renderUi = (obj) => {
+    console.log(obj)
 }
 
 searchBtn.addEventListener("click", getSearch)
