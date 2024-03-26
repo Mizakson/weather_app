@@ -38,6 +38,25 @@ const getSearch = async (e) => {
 
 }
 
+const renderUi = (obj) => {
+    weatherDisplay.innerHTML = `
+    <div id='info'>
+        <div id='location'>
+          <h2 id='location-name'>${obj.location[0]}</h2>
+          <h4 id='location-region'>${obj.location[1]}, ${obj.location[2]}</h4>
+        </div>
+        <div id='forecast'>
+        <h3 id='condition'>${obj.forecast[0]}</h3>
+          <img src=${obj.forecast[1]} alt='${obj.forecast[0]}'>
+          <div id='temps'>
+          <h4 id='high-temp'>Daily High: ${obj.forecast[4]}°F</h4>
+          <h4 id='low-temp'>Daily Low: ${obj.forecast[3]}°F</h4>
+          </div>
+        </div>
+    </div>
+   `
+}
+
 const transformData = (data) => {
     // location data
     const name = data.location.name
@@ -59,10 +78,6 @@ const transformData = (data) => {
 
     return renderUi(essentialData)
 
-}
-
-const renderUi = (obj) => {
-    console.log(obj)
 }
 
 searchBtn.addEventListener("click", getSearch)
