@@ -13,7 +13,27 @@
         <p id="app-author">A program by Mizakson</h3>
     </div>
     <div class="content">
-
+        <div class="search-input">
+            <label for="search">Enter Location: </label>
+            <input type="text" id="search" maxlength="50">
+            <button class="main-seach">Search</button>
+        </div>
+        <div class="forecast">
+            <div id="c-to-f">
+                <button id="farenheit">F</button>
+                <button id="celsius">C</button>
+            </div>
+            <div id="forecast-header">
+                <h3 id="location-name"></h3>
+                <h4 id="location-country"></h4>
+            </div>
+            <div id="forecast-data">
+                <img src="#" alt="forecast-icon" id="forecast-condition-icon">
+                <p id="temperature"></p>
+                <p id="wind-speed"></p>
+                <p id="rain-chance"></p>
+            </div>
+        </div>
     </div>
     <div class="footer">
         <p id="footer-credit">Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a></p>
