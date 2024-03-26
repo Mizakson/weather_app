@@ -16,18 +16,26 @@ const WEATHER_API_KEY = "9740515f7e2f4924acb162332242503"
 const searchField = document.getElementById("search")
 const searchBtn = document.querySelector(".main-search")
 
-function searchLocation(location) {
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${location}&days=1`, {mode: "cors"})
-    .then(function(data) {
-        return data.json()
+const getSearch = async (e) => {
+    e.preventDefault()
+    
+    const location = searchField.value
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=${location}&days=1`, {mode: "cors"})
+    
+    response.json().then(function(data) {
+        if (data.current.condition.code === 1006) {
+            document.getElementById("error-display").textContent = "INVALID LOCATION"
+        }
+        if (data.current.condition.code === 2007) {
+            document.getElementById("error-display").textContent = "MONTHLY CALL FREQUENCY EXCEEDED"
+        }
+        else {
+            console.log(data)
+            // handle data -- render ui here
+        }
+        
     })
-    .then(function(data) {
-        console.log(data)
-    })
+
 }
 
-searchBtn.addEventListener("click", function(event) {
-    event.preventDefault()
-    const location = searchField.value
-    searchLocation(location)
-})
+searchBtn.addEventListener("click", getSearch)
